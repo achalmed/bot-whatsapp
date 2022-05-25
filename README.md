@@ -11,7 +11,7 @@ El siguiente proyecto se realizó con para la MDSJB-Ayacucho donde se creó y im
 > [VER](https://github.com/leifermendez/bot-whatsapp/commits/main)
 
 ### Busco colaboradores ⭐
-Hola amigos me gusta mucho este proyecto pero por cuestiones de tiempo se me dificulta mantener las actualizaciones si alguno quieres participar en el proyecto escribeme a leifer.contacto@gmail.com
+Hola amigos me gusta mucho este proyecto pero por cuestiones de tiempo se me dificulta mantener las actualizaciones si alguno quieres participar en el proyecto escribeme a achalmaedison@outlook.com
 
 #### Acceso rápido 
 > Si tienes una cuenta en __heroku__ puedes desplegar este proyecto con (1 click)
