@@ -1,9 +1,8 @@
 ## Chatbot Whatsapp (OpenSource)
 #### Actualizado MUNICIPALIDAD DISTRITAL DE SAN JUAN BAUTISTA AYACUCHO
 
-El siguiente proyecto se realizó con fines educativos para el canal de [Youtube (Leifer Mendez)](https://www.youtube.com/channel/UCgrIGp5QAnC0J8LfNJxDRDw?sub_confirmation=1) donde aprendemos a crear y implementar un chatbot increíble usando [node.js](https://codigoencasa.com/tag/nodejs/) además le agregamos inteligencia artificial gracias al servicio de __dialogflow__.
+El siguiente proyecto se realizó con para la MDSJB-Ayacucho donde se creó y implementó un chatbot increíble usando [node.js](https://codigoencasa.com/tag/nodejs/) además le agregamos inteligencia artificial gracias al servicio de __dialogflow__.
 
-[![Video](https://i.giphy.com/media/OBDi3CXC83WkNeLEZP/giphy.webp)](https://youtu.be/5lEMCeWEJ8o) 
 
 ### ATENCION 🔴
 > 💥💥 Si te aparece el Error Multi-device es porque tienes la cuenta de whatsapp afiliada al modo "BETA de Multi dispositivo" por el momento no se tiene soporte para esas personas si tu quieres hacer uso de este __BOT__ debes de salir del modo BETA y intentarlo de la manera tradicional
@@ -134,9 +133,6 @@ __Listo 😎__
 > Cuando sale este mensaje tu BOT está __listo__ para trabajar!
 ![](https://i.imgur.com/eoJ4Ruk.png)
 
-# ¿Quieres ver como se creó? 🤖
-- [Ver Video 1](https://www.youtube.com/watch?v=A_Xu0OR_HkE)
-- [¿Como instalarlo? (Actulización)](https://youtu.be/5lEMCeWEJ8o)
 
 ## ¿Como usarlo el chatbot de whatsapp?
 > Escribe un mensaje al whatsapp que vinculaste con tu BOT
