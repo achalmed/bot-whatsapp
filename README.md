@@ -1,175 +1,73 @@
-# Chatbot Library
-![](https://img.shields.io/npm/v/@bot-whatsapp/bot?color=%2300c200&label=%40bot-whatsapp)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![](https://img.shields.io/discord/915193197645402142?logo=discord)](https://link.codigoencasa.com/DISCORD)
+# Bot de WhatsApp del despacho
 
-<p align="center">
-  <img width="300" src="https://i.imgur.com/Oauef6t.png">
-</p>
+Bot informativo de WhatsApp para el despacho de un diputado. Responde automáticamente con un menú:
 
+1. 📥 **Mesa de Partes Virtual**: enlace, horario de recepción y recomendaciones
+2. 📄 **Requisitos** para presentar un documento
+3. 🕒 **Horario y dirección** de la oficina, correo y teléfono
+4. 📢 **Redes sociales**
+5. 👤 **Hablar con el equipo**: el bot se pausa para ese número (60 min por defecto) para que una persona responda desde el mismo WhatsApp
 
-**Con esta librería, puedes construir flujos automatizados de conversación de manera agnóstica al proveedor de WhatsApp,** configurar respuestas automatizadas para preguntas frecuentes, recibir y responder mensajes de manera automatizada, y hacer un seguimiento de las interacciones con los clientes.  Además, puedes configurar fácilmente disparadores que te ayudaran a expandir las funcionalidades sin límites. **[Ver más informacion](https://bot-whatsapp.netlify.app/)**
+Cualquier mensaje (por ejemplo «hola» o «buenas tardes») muestra el menú. Escribir `menu` vuelve al inicio.
 
-## Comenzar
+Está hecho con [BuilderBot](https://builderbot.app) 1.4.4, el sucesor activo de `@bot-whatsapp/bot`.
+
+## Estructura
 
 ```
-npm create bot-whatsapp@latest
+src/config.js       ← datos del despacho (lo único que hay que editar)
+src/flows.js        ← menú y respuestas
+src/app.js          ← conexión con WhatsApp y servidor HTTP
+test/flows.test.js  ← simulación de conversaciones
 ```
 
-Entiende más a fondo sus funcionalidades explicadas en nuestra documentación.
+## 1. Configurar los datos del despacho
 
-- Instalacion
-- Base de datos
-- Proveedores
+Edita **solo** `src/config.js` y reemplaza todo lo que diga `REEMPLAZAR`: nombre del diputado, enlace de la mesa de partes, dirección, correo, teléfono y redes. Ahí también puedes cambiar los horarios, los requisitos y los minutos de pausa.
 
-## Recursos
-- [📄 Documentación](https://bot-whatsapp.netlify.app/)
-- [🚀 Roadmap](https://github.com/orgs/codigoencasa/projects/1)
-- [💻 Discord](https://link.codigoencasa.com/DISCORD)
-- [👌 Twitter](https://twitter.com/leifermendez)
-- [🎥 Youtube](https://www.youtube.com/watch?v=5lEMCeWEJ8o&list=PL_WGMLcL4jzWPhdhcUyhbFU6bC0oJd2BR)
+## 2. Ejecutar
 
-## Comunidad
-<!-- readme: collaborators,contributors -start -->
-<table>
-<tr>
-    <td align="center">
-        <a href="https://github.com/cheveguerra">
-            <img src="https://avatars.githubusercontent.com/u/5891114?v=4" width="50;" alt="cheveguerra"/>
-            <br />
-            <sub><b>Jose Alberto Guerra Ugalde</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/leifermendez">
-            <img src="https://avatars.githubusercontent.com/u/15802366?v=4" width="50;" alt="leifermendez"/>
-            <br />
-            <sub><b>Leifer Mendez</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/aurik3">
-            <img src="https://avatars.githubusercontent.com/u/37228512?v=4" width="50;" alt="aurik3"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/vicente1992">
-            <img src="https://avatars.githubusercontent.com/u/57806030?v=4" width="50;" alt="vicente1992"/>
-            <br />
-            <sub><b>Manuel Vicente Ortiz</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/leifermendezfroged">
-            <img src="https://avatars.githubusercontent.com/u/97020486?v=4" width="50;" alt="leifermendezfroged"/>
-            <br />
-            <sub><b>Leifer Mendez</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/danielcasta0398">
-            <img src="https://avatars.githubusercontent.com/u/98791147?v=4" width="50;" alt="danielcasta0398"/>
-            <br />
-            <sub><b>Juan Daniel Castaño</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/marianarolfo">
-            <img src="https://avatars.githubusercontent.com/u/68322254?v=4" width="50;" alt="marianarolfo"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/HKong31">
-            <img src="https://avatars.githubusercontent.com/u/113340082?v=4" width="50;" alt="HKong31"/>
-            <br />
-            <sub><b>HLKong</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jzvi12">
-            <img src="https://avatars.githubusercontent.com/u/10729787?v=4" width="50;" alt="jzvi12"/>
-            <br />
-            <sub><b>Zvi</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/JosephVTX">
-            <img src="https://avatars.githubusercontent.com/u/91026290?v=4" width="50;" alt="JosephVTX"/>
-            <br />
-            <sub><b>Joseph Vega Callupe</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Gonzalito87">
-            <img src="https://avatars.githubusercontent.com/u/100331586?v=4" width="50;" alt="Gonzalito87"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/devrlbusiness">
-            <img src="https://avatars.githubusercontent.com/u/66280283?v=4" width="50;" alt="devrlbusiness"/>
-            <br />
-            <sub><b>Developer RL Business</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/Gregoriotecnico">
-            <img src="https://avatars.githubusercontent.com/u/118696506?v=4" width="50;" alt="Gregoriotecnico"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jlferrete">
-            <img src="https://avatars.githubusercontent.com/u/36698913?v=4" width="50;" alt="jlferrete"/>
-            <br />
-            <sub><b>Jose Luis Ferrete Olarte</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/lisandroprada">
-            <img src="https://avatars.githubusercontent.com/u/7232326?v=4" width="50;" alt="lisandroprada"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/6rak0">
-            <img src="https://avatars.githubusercontent.com/u/12260031?v=4" width="50;" alt="6rak0"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tonyvazgar">
-            <img src="https://avatars.githubusercontent.com/u/21047090?v=4" width="50;" alt="tonyvazgar"/>
-            <br />
-            <sub><b>Luis Antonio Vázquez García</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/rrruuuyyy">
-            <img src="https://avatars.githubusercontent.com/u/33061671?v=4" width="50;" alt="rrruuuyyy"/>
-            <br />
-            <sub><b>Rodrigo Mendoza Cabrera</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/yond1994">
-            <img src="https://avatars.githubusercontent.com/u/47557263?v=4" width="50;" alt="yond1994"/>
-            <br />
-            <sub><b>Yonathan Suarez</b></sub>
-        </a>
-    </td></tr>
-</table>
-<!-- readme: collaborators,contributors -end -->
+Requisitos: Node.js 20 o superior y un teléfono con WhatsApp (de preferencia un número exclusivo del despacho).
 
+```bash
+git clone https://github.com/achalmed/bot-whatsapp.git
+cd bot-whatsapp
+npm install
+npm test     # simula conversaciones y comprueba el menú
+npm start
+```
 
+Al iniciar se genera `bot.qr.png` (y el QR aparece en la terminal). Escanéalo desde el teléfono en **WhatsApp → Dispositivos vinculados → Vincular un dispositivo**. La sesión se guarda en `bot_sessions/`; no hace falta volver a escanear mientras exista esa carpeta.
+
+> Si aparece un error de autenticación (`ERRO AUTH`), WhatsApp cambió de versión. Consulta la vigente en <https://wppconnect.io/whatsapp-versions/> e iníciala así: `WA_VERSION=2.3000.XXXXXXXXXX npm start`.
+
+### Con Docker (servidor 24/7)
+
+```bash
+docker build -t despacho-bot .
+docker run -d --restart unless-stopped -p 3008:3008 \
+  -v $(pwd)/bot_sessions:/app/bot_sessions despacho-bot
+docker logs -f <id>   # para ver el QR la primera vez
+```
+
+## 3. Reactivar el bot para un ciudadano antes de tiempo
+
+Cuando el equipo termine de atender a alguien que eligió la opción 5:
+
+```bash
+curl -X POST http://localhost:3008/v1/blacklist \
+  -H 'Content-Type: application/json' \
+  -d '{"number": "51987654321", "intent": "remove"}'
+```
+
+Con `"intent": "add"` se pausa el bot para un número.
+
+## Advertencias importantes
+
+- **Conexión no oficial.** Este bot usa Baileys, que se conecta como «WhatsApp Web». Es gratis, pero WhatsApp no lo autoriza oficialmente y puede bloquear el número si detecta spam. Úsalo solo para **responder** (no para envíos masivos) y con un número dedicado. Para una solución institucional estable, BuilderBot también soporta la API oficial de **WhatsApp Business (Meta Cloud API)** con `@builderbot/provider-meta`; requiere verificar la cuenta en Meta y tiene costo por conversación.
+- **Datos personales.** El bot no guarda formularios, pero las conversaciones con DNI y datos de contacto quedan en el teléfono. Trátalas según la Ley N.° 29733 de Protección de Datos Personales.
+- **Necesita estar encendido.** El bot solo responde mientras el proceso está corriendo (PC o servidor) y el teléfono vinculado tiene conexión a internet al menos de vez en cuando.
+
+## Versión anterior
+
+El código antiguo de este repositorio (`bot-whatsapp` 0.1.x, 2023) quedó guardado en la rama [`legacy-0.1.x`](https://github.com/achalmed/bot-whatsapp/tree/legacy-0.1.x). Ya no se mantiene y sus dependencias están retiradas.
