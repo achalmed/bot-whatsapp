@@ -1,7 +1,0 @@
-node_modules
-.env
-*_sessions
-*tokens
-*.log
-*qr.png
-db.json
