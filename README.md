@@ -62,6 +62,12 @@ curl -X POST http://localhost:3008/v1/blacklist \
 
 Con `"intent": "add"` se pausa el bot para un número.
 
+## 4. Actualizaciones de BuilderBot
+
+El código de BuilderBot no está copiado en este repositorio: se descarga de npm según las versiones de `package.json`. **Dependabot** (`.github/dependabot.yml`) revisa cada lunes si hay versiones nuevas y, si las hay, abre un PR automático; las pruebas corren solas y basta con aprobarlo si salen en verde.
+
+> ⚠️ **No uses el botón «Sync fork» de GitHub.** Este repositorio figura como fork del código de la librería, por eso GitHub dice que está «behind codigoencasa/builderbot:main». Sincronizarlo reemplazaría o borraría el bot del despacho. Las actualizaciones llegan por npm, no por el fork.
+
 ## Advertencias importantes
 
 - **Conexión no oficial.** Este bot usa Baileys, que se conecta como «WhatsApp Web». Es gratis, pero WhatsApp no lo autoriza oficialmente y puede bloquear el número si detecta spam. Úsalo solo para **responder** (no para envíos masivos) y con un número dedicado. Para una solución institucional estable, BuilderBot también soporta la API oficial de **WhatsApp Business (Meta Cloud API)** con `@builderbot/provider-meta`; requiere verificar la cuenta en Meta y tiene costo por conversación.

@@ -1,0 +1,21 @@
+version: 2
+updates:
+    # Paquetes de npm (BuilderBot y demás): revisa cada semana.
+    - package-ecosystem: npm
+      directory: /
+      schedule:
+          interval: weekly
+          day: monday
+          time: '08:00'
+          timezone: America/Lima
+      groups:
+          builderbot:
+              patterns:
+                  - '@builderbot/*'
+      open-pull-requests-limit: 5
+
+    # Acciones usadas en .github/workflows: revisa cada mes.
+    - package-ecosystem: github-actions
+      directory: /
+      schedule:
+          interval: monthly
