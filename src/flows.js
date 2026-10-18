@@ -54,9 +54,14 @@ const oficinaFlow = addKeyword(utils.setEvent('OFICINA')).addAnswer(
 )
 
 const redesFlow = addKeyword(utils.setEvent('REDES')).addAnswer(
-    ['📢 *Síguenos en redes sociales*', '', ...config.redes.map((r) => `• ${r.nombre}: ${r.enlace}`), VOLVER].join(
-        '\n'
-    )
+    [
+        '📢 *Síguenos en redes sociales*',
+        '',
+        ...(config.redes.length
+            ? config.redes.map((r) => `• ${r.nombre}: ${r.enlace}`)
+            : ['Pronto compartiremos aquí nuestras redes oficiales.']),
+        VOLVER,
+    ].join('\n')
 )
 
 const atencionFlow = addKeyword(utils.setEvent('ATENCION')).addAction(async (ctx, { flowDynamic, blacklist }) => {

@@ -3,3 +3,4 @@ node_modules
 *.log
 *qr.png
 db.json
+.env

@@ -44,7 +44,9 @@ test('opciones 2, 3 y 4 responden su contenido', async () => {
     await say('51900000003', 'menu')
     assert.ok((await say('51900000003', '3')).includes(config.oficina.direccion))
     await say('51900000003', 'Menú')
-    assert.ok((await say('51900000003', '4')).includes(config.redes[0].enlace))
+    const redes = await say('51900000003', '4')
+    if (config.redes.length) assert.ok(redes.includes(config.redes[0].enlace))
+    else assert.match(redes, /redes oficiales/)
 })
 
 test('opción inválida repite el menú', async () => {

@@ -1,13 +1,38 @@
 /**
  * Datos del despacho que el bot comparte.
- * Edita SOLO este archivo para cambiar enlaces, horarios o textos.
- * Todo lo que dice "REEMPLAZAR" debe completarse antes de poner el bot en producción.
+ *
+ * Los datos propios del despacho (nombre, enlaces, dirección, contacto, redes) NO se escriben aquí:
+ * se leen de las variables de entorno o del archivo `.env` (ignorado por git; plantilla en `.env.example`).
+ * Así el repositorio, que es público, no contiene datos del cliente.
+ * Lo que dice "REEMPLAZAR" es el valor por defecto mientras falte la variable.
+ *
+ * Aquí sí se editan los textos genéricos: horarios, recomendaciones, requisitos y minutos de pausa.
  */
+
+// Carga `.env` si existe (Node 20.12 o superior); si no existe, se usan las variables del entorno.
+try {
+    process.loadEnvFile?.()
+} catch {
+    // Sin `.env`: no es un error.
+}
+
+const env = (nombre, porDefecto) => process.env[nombre]?.trim() || porDefecto
+
+const direccion = env('DESPACHO_DIRECCION', 'REEMPLAZAR dirección de la oficina')
+
+const redes = [
+    { nombre: 'Facebook', enlace: env('DESPACHO_FACEBOOK_URL') },
+    { nombre: 'X (Twitter)', enlace: env('DESPACHO_X_URL') },
+    { nombre: 'Instagram', enlace: env('DESPACHO_INSTAGRAM_URL') },
+    { nombre: 'TikTok', enlace: env('DESPACHO_TIKTOK_URL') },
+    { nombre: 'YouTube', enlace: env('DESPACHO_YOUTUBE_URL') },
+].filter((r) => r.enlace)
+
 export default {
-    nombreDespacho: 'Despacho del Diputado REEMPLAZAR_NOMBRE',
+    nombreDespacho: env('DESPACHO_NOMBRE', 'Despacho del Diputado REEMPLAZAR_NOMBRE'),
 
     mesaDePartes: {
-        enlace: 'https://REEMPLAZAR-enlace-de-mesa-de-partes',
+        enlace: env('DESPACHO_MESA_PARTES_URL', 'https://REEMPLAZAR-enlace-de-mesa-de-partes'),
         horarioRecepcion: 'Lunes a viernes de 8:30 a. m. a 4:30 p. m. (documentos enviados fuera de horario se registran el siguiente día hábil)',
         recomendaciones: [
             'Adjunta tu documento en formato PDF.',
@@ -25,24 +50,23 @@ export default {
     ],
 
     oficina: {
-        direccion: 'REEMPLAZAR dirección de la oficina',
-        mapa: 'https://maps.google.com/?q=REEMPLAZAR',
+        direccion,
+        // Sin enlace propio, se arma la búsqueda de Google Maps con la dirección.
+        mapa: env('DESPACHO_MAPA_URL', `https://maps.google.com/?q=${encodeURIComponent(direccion)}`),
         horarioAtencion: 'Lunes a viernes de 8:30 a. m. a 4:30 p. m.',
     },
 
     contacto: {
-        correo: 'REEMPLAZAR@correo.gob.pe',
-        telefono: 'REEMPLAZAR',
+        correo: env('DESPACHO_CORREO', 'REEMPLAZAR@correo.gob.pe'),
+        telefono: env('DESPACHO_TELEFONO', 'REEMPLAZAR'),
     },
 
-    redes: [
-        { nombre: 'Facebook', enlace: 'https://facebook.com/REEMPLAZAR' },
-        { nombre: 'X (Twitter)', enlace: 'https://x.com/REEMPLAZAR' },
-    ],
+    // Solo las redes con enlace en `.env`; si no hay ninguna, la opción 4 lo dice sin mostrar enlaces falsos.
+    redes,
 
     /**
      * Cuando alguien elige "hablar con el equipo", el bot deja de responderle
      * durante estos minutos para que una persona atienda desde el mismo WhatsApp.
      */
-    pausaAtencionMinutos: 60,
+    pausaAtencionMinutos: Number(env('DESPACHO_PAUSA_MINUTOS', 60)),
 }

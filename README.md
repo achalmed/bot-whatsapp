@@ -15,7 +15,8 @@ Está hecho con [BuilderBot](https://builderbot.app) 1.4.4, el sucesor activo de
 ## Estructura
 
 ```
-src/config.js       ← datos del despacho (lo único que hay que editar)
+.env                ← datos del despacho (no se sube a git; plantilla en .env.example)
+src/config.js       ← lee el .env; textos genéricos (horarios, requisitos, pausa)
 src/flows.js        ← menú y respuestas
 src/app.js          ← conexión con WhatsApp y servidor HTTP
 test/flows.test.js  ← simulación de conversaciones
@@ -23,7 +24,13 @@ test/flows.test.js  ← simulación de conversaciones
 
 ## 1. Configurar los datos del despacho
 
-Edita **solo** `src/config.js` y reemplaza todo lo que diga `REEMPLAZAR`: nombre del diputado, enlace de la mesa de partes, dirección, correo, teléfono y redes. Ahí también puedes cambiar los horarios, los requisitos y los minutos de pausa.
+Los datos del despacho no van en el código (el repositorio es público): van en un archivo `.env`, que git ignora.
+
+```bash
+cp .env.example .env
+```
+
+Completa en `.env` el nombre del diputado, el enlace de la mesa de partes, la dirección, el correo, el teléfono y las redes (las que queden vacías no aparecen). Lo que falte se muestra como `REEMPLAZAR`. Los horarios, las recomendaciones y los requisitos, que son textos genéricos, se cambian en `src/config.js`.
 
 ## 2. Ejecutar
 
@@ -45,7 +52,7 @@ Al iniciar se genera `bot.qr.png` (y el QR aparece en la terminal). Escanéalo d
 
 ```bash
 docker build -t despacho-bot .
-docker run -d --restart unless-stopped -p 3008:3008 \
+docker run -d --restart unless-stopped -p 3008:3008 --env-file .env \
   -v $(pwd)/bot_sessions:/app/bot_sessions despacho-bot
 docker logs -f <id>   # para ver el QR la primera vez
 ```
