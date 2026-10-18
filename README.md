@@ -1,4 +1,10 @@
-# Bot de WhatsApp del despacho
+---
+tipo: readme
+estado: activo
+---
+# bot-whatsapp/ — bot informativo de WhatsApp para el despacho de un diputado (mesa de partes, requisitos, horario, contacto)
+
+## Qué es
 
 Bot informativo de WhatsApp para el despacho de un diputado. Responde automáticamente con un menú:
 
@@ -12,17 +18,9 @@ Cualquier mensaje (por ejemplo «hola» o «buenas tardes») muestra el menú. E
 
 Está hecho con [BuilderBot](https://builderbot.app) 1.4.4, el sucesor activo de `@bot-whatsapp/bot`.
 
-## Estructura
+## Uso
 
-```
-.env                ← datos del despacho (no se sube a git; plantilla en .env.example)
-src/config.js       ← lee el .env; textos genéricos (horarios, requisitos, pausa)
-src/flows.js        ← menú y respuestas
-src/app.js          ← conexión con WhatsApp y servidor HTTP
-test/flows.test.js  ← simulación de conversaciones
-```
-
-## 1. Configurar los datos del despacho
+### Configurar los datos del despacho
 
 Los datos del despacho no van en el código (el repositorio es público): van en un archivo `.env`, que git ignora.
 
@@ -30,9 +28,9 @@ Los datos del despacho no van en el código (el repositorio es público): van en
 cp .env.example .env
 ```
 
-Completa en `.env` el nombre del diputado, el enlace de la mesa de partes, la dirección, el correo, el teléfono y las redes (las que queden vacías no aparecen). Lo que falte se muestra como `REEMPLAZAR`. Los horarios, las recomendaciones y los requisitos, que son textos genéricos, se cambian en `src/config.js`.
+Completa en `.env` el nombre del diputado, el enlace de la mesa de partes, la dirección, el correo, el teléfono y las redes (las que queden vacías no aparecen). Lo que falte se muestra como `REEMPLAZAR`; si no hay ninguna red, la opción 4 avisa que pronto se compartirán. Los horarios, las recomendaciones y los requisitos, que son textos genéricos, se cambian en `src/config.js`.
 
-## 2. Ejecutar
+### Ejecutar
 
 Requisitos: Node.js 20 o superior y un teléfono con WhatsApp (de preferencia un número exclusivo del despacho).
 
@@ -46,7 +44,7 @@ npm start
 
 Al iniciar se genera `bot.qr.png` (y el QR aparece en la terminal). Escanéalo desde el teléfono en **WhatsApp → Dispositivos vinculados → Vincular un dispositivo**. La sesión se guarda en `bot_sessions/`; no hace falta volver a escanear mientras exista esa carpeta.
 
-> Si aparece un error de autenticación (`ERRO AUTH`), WhatsApp cambió de versión. Consulta la vigente en <https://wppconnect.io/whatsapp-versions/> e iníciala así: `WA_VERSION=2.3000.XXXXXXXXXX npm start`.
+> Si aparece `ERROR AUTH`, la versión de WhatsApp Web que usa el bot ya no se acepta. Copia la vigente de <https://wppconnect.io/whatsapp-versions/> (sin el sufijo `-alpha`) en `WA_VERSION=` del `.env` y vuelve a ejecutar `npm start`.
 
 ### Con Docker (servidor 24/7)
 
@@ -57,7 +55,7 @@ docker run -d --restart unless-stopped -p 3008:3008 --env-file .env \
 docker logs -f <id>   # para ver el QR la primera vez
 ```
 
-## 3. Reactivar el bot para un ciudadano antes de tiempo
+### Reactivar el bot para un ciudadano antes de tiempo
 
 Cuando el equipo termine de atender a alguien que eligió la opción 5:
 
@@ -69,17 +67,28 @@ curl -X POST http://localhost:3008/v1/blacklist \
 
 Con `"intent": "add"` se pausa el bot para un número.
 
-## 4. Actualizaciones de BuilderBot
+### Actualizaciones de BuilderBot
 
 El código de BuilderBot no está copiado en este repositorio: se descarga de npm según las versiones de `package.json`. **Dependabot** (`.github/dependabot.yml`) revisa cada lunes si hay versiones nuevas y, si las hay, abre un PR automático; las pruebas corren solas y basta con aprobarlo si salen en verde.
 
 > ⚠️ **No uses el botón «Sync fork» de GitHub.** Este repositorio figura como fork del código de la librería, por eso GitHub dice que está «behind codigoencasa/builderbot:main». Sincronizarlo reemplazaría o borraría el bot del despacho. Las actualizaciones llegan por npm, no por el fork.
 
-## Advertencias importantes
+## Límite honesto
 
 - **Conexión no oficial.** Este bot usa Baileys, que se conecta como «WhatsApp Web». Es gratis, pero WhatsApp no lo autoriza oficialmente y puede bloquear el número si detecta spam. Úsalo solo para **responder** (no para envíos masivos) y con un número dedicado. Para una solución institucional estable, BuilderBot también soporta la API oficial de **WhatsApp Business (Meta Cloud API)** con `@builderbot/provider-meta`; requiere verificar la cuenta en Meta y tiene costo por conversación.
 - **Datos personales.** El bot no guarda formularios, pero las conversaciones con DNI y datos de contacto quedan en el teléfono. Trátalas según la Ley N.° 29733 de Protección de Datos Personales.
+- **La versión de WhatsApp Web caduca.** Cada versión publicada por wppconnect vale unos dos meses; al vencer aparece `ERROR AUTH` y hay que actualizar `WA_VERSION` (ver §Uso).
 - **Necesita estar encendido.** El bot solo responde mientras el proceso está corriendo (PC o servidor) y el teléfono vinculado tiene conexión a internet al menos de vez en cuando.
+
+## Estructura
+
+```
+.env                ← datos del despacho (no se sube a git; plantilla en .env.example)
+src/config.js       ← lee el .env; textos genéricos (horarios, requisitos, pausa)
+src/flows.js        ← menú y respuestas
+src/app.js          ← conexión con WhatsApp y servidor HTTP
+test/flows.test.js  ← simulación de conversaciones
+```
 
 ## Versión anterior
 
