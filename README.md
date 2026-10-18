@@ -74,6 +74,7 @@ El código de BuilderBot no está copiado en este repositorio: se descarga de np
 - **Datos personales.** El bot no guarda formularios, pero las conversaciones con DNI y datos de contacto quedan en el teléfono. Trátalas según la Ley N.° 29733 de Protección de Datos Personales.
 - **Necesita estar encendido.** El bot solo responde mientras el proceso está corriendo (PC o servidor) y el teléfono vinculado tiene conexión a internet al menos de vez en cuando.
 
-## Versión anterior
+## Versiones anteriores
 
-El código antiguo de este repositorio (`bot-whatsapp` 0.1.x, 2023) quedó guardado en la rama [`legacy-0.1.x`](https://github.com/achalmed/bot-whatsapp/tree/legacy-0.1.x). Ya no se mantiene y sus dependencias están retiradas.
+- **Bot de la Municipalidad Distrital de San Juan Bautista (2022):** guardado en la rama [`mdsjb-2022`](https://github.com/achalmed/bot-whatsapp/tree/mdsjb-2022). Usa `whatsapp-web.js` 1.16 y Dialogflow; ya no conecta con WhatsApp y se conserva solo como historial. No abras un PR de esa rama hacia `main`.
+- **Librería `bot-whatsapp` 0.1.x (2023):** su código sigue disponible en el proyecto original, [codigoencasa/builderbot](https://github.com/codigoencasa/builderbot).
